@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public class GameStateController {
 
-    private List<GameObject> gameObjects = new ArrayList<>();
+    private final List<GameObject> gameObjects = new ArrayList<>();
     private CollisionEngine collisionEngine = new CollisionEngine();
 
     private long lastAsteroidTime = System.currentTimeMillis();
@@ -21,10 +21,10 @@ public class GameStateController {
     public void update() {
         gameObjects.forEach(GameObject::update);
         collisionEngine.checkCollisions(gameObjects);
-        createAsteroid();
+        randomAsteroid();
     }
 
-    public void add(GameObject gameObject) {
+    private void add(GameObject gameObject) {
         gameObjects.add(gameObject);
     }
 
@@ -40,7 +40,18 @@ public class GameStateController {
         bullets.forEach(this::add);
     }
 
-    public List<Spaceship> createSpaceships(int quantity) {
+    public List<Spaceship> init(int quantity) {
+        createAsteroids();
+        return createSpaceships(quantity);
+    }
+
+    private void createAsteroids() {
+        Stream.generate(Randoms::createAsteroid)
+                .limit(20)
+                .forEach(gameObjects::add);
+    }
+
+    private List<Spaceship> createSpaceships(int quantity) {
         final List<Spaceship> spaceships =
                 Stream.generate(Randoms::createSpaceship)
                         .limit(quantity)
@@ -50,13 +61,7 @@ public class GameStateController {
         return spaceships;
     }
 
-    public void createAsteroids() {
-        Stream.generate(Randoms::createAsteroid)
-                .limit(20)
-                .forEach(gameObjects::add);
-    }
-
-    public void createAsteroid() {
+    private void randomAsteroid() {
         if (Randoms.bound(10) > 5 && System.currentTimeMillis() - lastAsteroidTime > 1500) {
             gameObjects.add(Randoms.createAsteroid());
             lastAsteroidTime = System.currentTimeMillis();

@@ -77,11 +77,19 @@ public abstract class GameObject implements Positionable, Collisionable<GameObje
         final int gameWidth = Constants.GameWidth;
         final int gameHeight = Constants.GameHeight;
 
-        if (x < 0) position = Vector2.vector(gameWidth, y);
-        else if (x > gameWidth) position = Vector2.vector(0, y);
+        final float newX = x < 0
+                ? gameWidth
+                : x > gameWidth
+                ? 0
+                : x;
 
-        if (y < 0) position = Vector2.vector(x, gameHeight);
-        else if (y > gameHeight) position = Vector2.vector(x, 0);
+        final float newY = y < 0
+                ? gameHeight
+                : y > gameHeight
+                ? 0
+                : y;
+
+        position = Vector2.vector(newX, newY);
 
     }
 }

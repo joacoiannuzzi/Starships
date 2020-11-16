@@ -100,13 +100,11 @@ public class Spaceship extends GameObject implements Actionable, BulletCallback,
 
     @Override
     public void shoot() {
-        final Optional<List<Bullet>> bullets =
-                weapon.shoot(
-                        position,
-                        direction,
-                        valuable -> score += valuable.getValue()
-                );
-        bullets.ifPresent(bulletsConsumer);
+        weapon.shoot(
+                position,
+                direction,
+                valuable -> score += valuable.getValue()
+        ).ifPresent(bulletsConsumer);
 
     }
 

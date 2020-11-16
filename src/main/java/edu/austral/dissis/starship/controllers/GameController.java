@@ -6,6 +6,7 @@ import edu.austral.dissis.starship.drawers.DrawerController;
 import edu.austral.dissis.starship.drawers.DrawerCreator;
 import edu.austral.dissis.starship.input.InputController;
 import edu.austral.dissis.starship.input.InputHandler;
+import edu.austral.dissis.starship.input.InputHandlerImpl;
 import edu.austral.dissis.starship.input.KeyCreator;
 import edu.austral.dissis.starship.models.Spaceship;
 import processing.core.PGraphics;
@@ -15,14 +16,13 @@ import java.util.Set;
 
 public class GameController implements Controller {
 
-    private GameStateController gameStateController = new GameStateController();
-    private InputController inputController = new InputController();
-    private DrawerCreator drawerCreator;
+    private final GameStateController gameStateController = new GameStateController();
+    private final InputController inputController = new InputController();
+    private final DrawerCreator drawerCreator;
 
     public GameController(ImageLoader imageLoader) {
         drawerCreator = new DrawerCreator(imageLoader);
-        initSpaceships();
-        initAsteroids();
+        initGameState();
     }
 
     @Override
@@ -38,22 +38,18 @@ public class GameController implements Controller {
 
     @Override
     public void draw(PGraphics graphics) {
-        graphics.background(drawerCreator.getBackground());
+        DrawerController.drawBackground(graphics, drawerCreator.getBackground());
         final List<Drawable> drawables = drawerCreator.createDrawables(gameStateController.getGameObjects());
         DrawerController.draw(graphics, drawables);
     }
 
-    private void initAsteroids() {
-        gameStateController.createAsteroids();
-    }
+    private void initGameState() {
+        final List<Spaceship> spaceships = gameStateController.init(2);
 
-    private void initSpaceships() {
-        final List<Spaceship> spaceships = gameStateController.createSpaceships(2);
-
-        final InputHandler inputHandler = new InputHandler(spaceships.get(0), KeyCreator.keys1());
+        final InputHandler inputHandler = new InputHandlerImpl(spaceships.get(0), KeyCreator.keys1());
         inputController.add(inputHandler);
 
-        final InputHandler inputHandler1 = new InputHandler(spaceships.get(1), KeyCreator.keys2());
+        final InputHandler inputHandler1 = new InputHandlerImpl(spaceships.get(1), KeyCreator.keys2());
         inputController.add(inputHandler1);
     }
 

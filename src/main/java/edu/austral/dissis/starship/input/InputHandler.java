@@ -1,25 +1,8 @@
 package edu.austral.dissis.starship.input;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Consumer;
+public interface InputHandler {
 
-public class InputHandler {
+    void handle(Integer key);
 
-    private Actionable actionable;
-    private Map<Integer, Consumer<Actionable>> keys;
-
-    public InputHandler(Actionable actionable, Map<Integer, Consumer<Actionable>> keys) {
-        this.actionable = actionable;
-        this.keys = keys;
-    }
-
-    void handle(Integer key) {
-        Optional.ofNullable(keys.get(key))
-                .ifPresent(cb -> cb.accept(actionable));
-    }
-
-    public Actionable getActionable() {
-        return actionable;
-    }
+    Actionable getActionable();
 }
