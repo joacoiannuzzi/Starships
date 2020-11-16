@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship.score;
+package edu.austral.dissis.starship.interfaces;
 
 public interface Valuable {
 

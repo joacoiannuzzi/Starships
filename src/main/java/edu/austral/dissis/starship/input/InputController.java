@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class InputController {
 
-    private List<InputHandler> inputHandlers = new ArrayList<>();
+    private final List<InputHandler> inputHandlers = new ArrayList<>();
 
     public void handleInput(Set<Integer> keys) {
         inputHandlers.forEach(inputHandler ->

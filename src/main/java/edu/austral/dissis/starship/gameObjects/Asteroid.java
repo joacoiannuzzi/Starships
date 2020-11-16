@@ -1,8 +1,10 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.gameObjects;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.score.Valuable;
+import edu.austral.dissis.starship.interfaces.Damageable;
+import edu.austral.dissis.starship.interfaces.EntityType;
+import edu.austral.dissis.starship.interfaces.Valuable;
 
 public class Asteroid extends GameObject implements Valuable, Damageable {
 
@@ -19,9 +21,7 @@ public class Asteroid extends GameObject implements Valuable, Damageable {
     @Override
     public void collisionedWithAsteroid(Asteroid asteroid) {
         direction = direction.rotate(0.05f);
-//        direction = direction.multiply(-1f);
         move();
-//        System.out.println("Asteroid collisioned with asteroid");
     }
 
     @Override

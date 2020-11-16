@@ -1,9 +1,9 @@
 package edu.austral.dissis.starship.controllers;
 
 import edu.austral.dissis.starship.base.collision.CollisionEngine;
-import edu.austral.dissis.starship.models.Bullet;
-import edu.austral.dissis.starship.models.GameObject;
-import edu.austral.dissis.starship.models.Spaceship;
+import edu.austral.dissis.starship.gameObjects.Bullet;
+import edu.austral.dissis.starship.gameObjects.GameObject;
+import edu.austral.dissis.starship.gameObjects.Spaceship;
 import edu.austral.dissis.starship.utils.Randoms;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class GameStateController {
 
     private final List<GameObject> gameObjects = new ArrayList<>();
-    private CollisionEngine collisionEngine = new CollisionEngine();
+    private final CollisionEngine collisionEngine = new CollisionEngine();
 
     private long lastAsteroidTime = System.currentTimeMillis();
 

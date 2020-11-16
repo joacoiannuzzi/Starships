@@ -1,22 +1,24 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.gameObjects;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.vector.Vector2;
 import edu.austral.dissis.starship.input.Actionable;
-import edu.austral.dissis.starship.models.weapon.MultiWeapon;
-import edu.austral.dissis.starship.models.weapon.NormalWeapon;
-import edu.austral.dissis.starship.models.weapon.Weapon;
-import edu.austral.dissis.starship.score.Valuable;
+import edu.austral.dissis.starship.interfaces.BulletCallback;
+import edu.austral.dissis.starship.interfaces.Damageable;
+import edu.austral.dissis.starship.interfaces.EntityType;
+import edu.austral.dissis.starship.weapon.MultiWeapon;
+import edu.austral.dissis.starship.weapon.NormalWeapon;
+import edu.austral.dissis.starship.weapon.Weapon;
+import edu.austral.dissis.starship.interfaces.Valuable;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
 
 
 public class Spaceship extends GameObject implements Actionable, BulletCallback, Valuable, Damageable {
 
     private Weapon weapon = new NormalWeapon();
-    private Consumer<List<Bullet>> bulletsConsumer;
+    private Consumer<List<Bullet>> bulletsCallback;
 
     private int lives = Constants.SpaceshipLives;
 
@@ -51,16 +53,21 @@ public class Spaceship extends GameObject implements Actionable, BulletCallback,
     }
 
     private void manageSpecialWeapon() {
-        if (System.currentTimeMillis() - lastWeaponChange > 2000
-                && score - lastScoreGunChange > Constants.GunChangeScore) {
+        final boolean shouldChangeToSpecialWeapon = System.currentTimeMillis() - lastWeaponChange > 2000
+                && score - lastScoreGunChange > Constants.GunChangeScore;
+
+        if (shouldChangeToSpecialWeapon) {
             lastScoreGunChange = score;
             lastWeaponChange = System.currentTimeMillis();
             hasSpecialWeapon = true;
             weapon = new MultiWeapon();
+            return;
         }
 
-        if (hasSpecialWeapon
-                && System.currentTimeMillis() - lastWeaponChange > 1000) {
+        final boolean shouldChangeToNormalWeapon = hasSpecialWeapon
+                && System.currentTimeMillis() - lastWeaponChange > 1000;
+
+        if (shouldChangeToNormalWeapon) {
             weapon = new NormalWeapon();
             hasSpecialWeapon = false;
             lastWeaponChange = System.currentTimeMillis();
@@ -104,13 +111,13 @@ public class Spaceship extends GameObject implements Actionable, BulletCallback,
                 position,
                 direction,
                 valuable -> score += valuable.getValue()
-        ).ifPresent(bulletsConsumer);
+        ).ifPresent(bulletsCallback);
 
     }
 
     @Override
     public void addBulletsCallback(Consumer<List<Bullet>> callback) {
-        bulletsConsumer = callback;
+        bulletsCallback = callback;
     }
 
     @Override

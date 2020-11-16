@@ -1,4 +1,9 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.interfaces;
+
+import edu.austral.dissis.starship.gameObjects.Asteroid;
+import edu.austral.dissis.starship.gameObjects.Bullet;
+import edu.austral.dissis.starship.gameObjects.GameObject;
+import edu.austral.dissis.starship.gameObjects.Spaceship;
 
 public interface Visitable {
 

@@ -2,8 +2,8 @@ package edu.austral.dissis.starship.utils;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.Asteroid;
-import edu.austral.dissis.starship.models.Spaceship;
+import edu.austral.dissis.starship.gameObjects.Asteroid;
+import edu.austral.dissis.starship.gameObjects.Spaceship;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

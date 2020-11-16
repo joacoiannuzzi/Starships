@@ -1,8 +1,10 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.gameObjects;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.score.Valuable;
+import edu.austral.dissis.starship.interfaces.Damageable;
+import edu.austral.dissis.starship.interfaces.EntityType;
+import edu.austral.dissis.starship.interfaces.Valuable;
 
 import java.util.function.Consumer;
 

@@ -1,6 +1,6 @@
 package edu.austral.dissis.starship.drawers;
 
-import edu.austral.dissis.starship.models.Positionable;
+import edu.austral.dissis.starship.interfaces.Positionable;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PImage;

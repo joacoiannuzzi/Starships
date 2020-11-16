@@ -1,9 +1,9 @@
-package edu.austral.dissis.starship.models.weapon;
+package edu.austral.dissis.starship.weapon;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.Bullet;
-import edu.austral.dissis.starship.score.Valuable;
+import edu.austral.dissis.starship.gameObjects.Bullet;
+import edu.austral.dissis.starship.interfaces.Valuable;
 
 import java.util.Collections;
 import java.util.List;

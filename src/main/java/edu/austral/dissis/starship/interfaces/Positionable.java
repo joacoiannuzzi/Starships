@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.interfaces;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
 

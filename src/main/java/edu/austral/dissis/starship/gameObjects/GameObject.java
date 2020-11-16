@@ -1,8 +1,11 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.gameObjects;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.collision.Collisionable;
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.interfaces.EntityTypeable;
+import edu.austral.dissis.starship.interfaces.Positionable;
+import edu.austral.dissis.starship.interfaces.Visitable;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

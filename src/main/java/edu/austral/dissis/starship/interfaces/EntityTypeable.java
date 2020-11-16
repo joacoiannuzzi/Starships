@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship.models;
+package edu.austral.dissis.starship.interfaces;
 
 public interface EntityTypeable {
 

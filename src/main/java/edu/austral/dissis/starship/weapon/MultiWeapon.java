@@ -1,12 +1,10 @@
-package edu.austral.dissis.starship.models.weapon;
+package edu.austral.dissis.starship.weapon;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.Bullet;
-import edu.austral.dissis.starship.score.Valuable;
+import edu.austral.dissis.starship.gameObjects.Bullet;
+import edu.austral.dissis.starship.interfaces.Valuable;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -27,7 +25,7 @@ public class MultiWeapon implements Weapon {
                 IntStream.range(0, 5)
                         .mapToObj(i ->
                                 new Bullet(
-                                        position.add(direction.multiply((float) (Constants.SpaceshipHeight + i * 0.5))),
+                                        position.add(direction.multiply((float) (Constants.SpaceshipHeight + i))),
                                         direction,
                                         7f,
                                         Constants.BulletWidth,

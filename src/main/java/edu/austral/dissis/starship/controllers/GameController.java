@@ -8,7 +8,7 @@ import edu.austral.dissis.starship.input.InputController;
 import edu.austral.dissis.starship.input.InputHandler;
 import edu.austral.dissis.starship.input.InputHandlerImpl;
 import edu.austral.dissis.starship.input.KeyCreator;
-import edu.austral.dissis.starship.models.Spaceship;
+import edu.austral.dissis.starship.gameObjects.Spaceship;
 import processing.core.PGraphics;
 
 import java.util.List;

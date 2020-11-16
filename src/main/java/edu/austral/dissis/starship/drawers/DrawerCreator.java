@@ -2,8 +2,8 @@ package edu.austral.dissis.starship.drawers;
 
 import edu.austral.dissis.starship.Constants;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
-import edu.austral.dissis.starship.models.EntityType;
-import edu.austral.dissis.starship.models.GameObject;
+import edu.austral.dissis.starship.interfaces.EntityType;
+import edu.austral.dissis.starship.gameObjects.GameObject;
 import processing.core.PImage;
 
 import java.util.HashMap;
@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 public class DrawerCreator {
 
     final private Map<EntityType, PImage> images;
-    private PImage background;
+    private final PImage background;
 
     public DrawerCreator(ImageLoader imageLoader) {
-        images = new HashMap<>(3);
+        images = new HashMap<>(4);
 
         final PImage spaceship = imageLoader.load("spaceship2.png");
         spaceship.resize(Constants.SpaceshipWidth, Constants.SpaceshipHeight);
